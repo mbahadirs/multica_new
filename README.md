@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Multica New - Next.js 16 Projesi
 
-## Getting Started
+Bu proje Next.js 16, Tailwind CSS, shadcn/ui ve Prisma ile oluşturulmuş modern bir web uygulamasıdır.
 
-First, run the development server:
+## Teknolojiler
 
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **shadcn/ui** (Radix UI bileşenleri)
+- **Prisma** (PostgreSQL ORM)
+- **PostgreSQL**
+
+## Kurulum
+
+### Gereksinimler
+
+- Node.js 20.9.0 veya üzeri
+- PostgreSQL veritabanı
+
+### Adımlar
+
+1. Depoyu klonlayın:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:mbahadirs/multica_new.git
+cd multica_new
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Bağımlılıkları yükleyin:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. `.env` dosyasını oluşturun ve veritabanı bağlantı bilgilerinizi ekleyin:
+```env
+DATABASE_URL="postgresql://kullanici:sifre@localhost:5432/veritabani_adi?schema=public"
+NEXT_PUBLIC_API_URL="http://localhost:3000"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Prisma migrasyonlarını çalıştırın:
+```bash
+npx prisma migrate dev --name init
+```
 
-## Learn More
+5. Geliştirme sunucusunu başlatın:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Uygulama [http://localhost:3000](http://localhost:3000) adresinde çalışacaktır.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Proje Yapısı
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+multica_new/
+├── app/                    # Next.js App Router sayfaları
+├── components/             # React bileşenleri
+├── lib/                    # Yardımcı fonksiyonlar ve Prisma client
+├── prisma/                 # Prisma schema ve migrasyonlar
+├── public/                 # Statik dosyalar
+└── ...
+```
 
-## Deploy on Vercel
+## Prisma
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Veritabanı şeması `prisma/schema.prisma` dosyasında tanımlanmıştır. Şu anda örnek bir `User` modeli içermektedir.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Prisma Komutları
+
+- Prisma Client'ı yeniden oluştur: `npx prisma generate`
+- Yeni migrasyon oluştur: `npx prisma migrate dev --name migration_adi`
+- Prisma Studio'yu aç: `npx prisma studio`
+
+## Geliştirme
+
+- `npm run dev` - Geliştirme sunucusunu başlatır
+- `npm run build` - Production build oluşturur
+- `npm run start` - Production sunucusunu başlatır
+- `npm run lint` - ESLint kontrolü yapar
+
+## shadcn/ui Bileşenleri
+
+Yeni bileşenler eklemek için:
+
+```bash
+npx shadcn@latest add button
+npx shadcn@latest add card
+# vb.
+```
+
+## Lisans
+
+MIT
